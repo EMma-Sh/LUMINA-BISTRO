@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LUMINA BISTRO | Elite Fine Dining</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
-        /* --- CSS VARIABLES & RESET --- */
         :root {
             --gold: #D4AF37;
             --black: #0A0A0A;
@@ -40,7 +38,6 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* --- REVEAL ANIMATION --- */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -52,7 +49,6 @@
             transform: translateY(0);
         }
 
-        /* --- NAVIGATION --- */
         nav {
             position: fixed;
             top: 0;
@@ -112,7 +108,6 @@
             font-weight: 700 !important;
         }
 
-        /* --- HERO SECTION --- */
         .hero {
             height: 100vh;
             position: relative;
@@ -257,7 +252,6 @@
             min-height: 600px;
         }
 
-        /* --- RESERVATION FORM --- */
         .reservation {
             background: var(--dark-grey);
             max-width: 800px;
@@ -292,7 +286,6 @@
             grid-column: span 2;
         }
 
-        /* --- FOOTER --- */
         footer {
             padding: 80px 5%;
             text-align: center;
@@ -313,7 +306,6 @@
             letter-spacing: 2px;
         }
 
-        /* --- RESPONSIVE --- */
         @media (max-width: 968px) {
             .menu-grid, .experience, .info-bar, .res-form {
                 grid-template-columns: 1fr;
@@ -327,7 +319,6 @@
 </head>
 <body>
 
-    <!-- NAVIGATION -->
     <nav id="navbar">
         <div class="logo">LUMINA<span>BISTRO</span></div>
         <div class="nav-links">
@@ -337,7 +328,6 @@
         </div>
     </nav>
 
-    <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
             <span class="reveal" style="color: var(--gold); letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 20px;">Est. 1994 • New York</span>
@@ -349,7 +339,6 @@
         </div>
     </section>
 
-    <!-- INFO BAR -->
     <div class="info-bar">
         <div class="info-item">
             <h4>Location</h4>
@@ -365,7 +354,6 @@
         </div>
     </div>
 
-    <!-- MENU -->
     <section id="menu" class="section-padding">
         <div class="section-title reveal">
             <h2>Seasonal Flavors</h2>
@@ -373,7 +361,6 @@
         </div>
         
         <div class="menu-grid">
-            <!-- Item 1 -->
             <div class="menu-item reveal">
                 <div class="menu-text">
                     <h3>Wagyu Beef Carpaccio</h3>
@@ -381,7 +368,6 @@
                 </div>
                 <div class="price">$32</div>
             </div>
-            <!-- Item 2 -->
             <div class="menu-item reveal">
                 <div class="menu-text">
                     <h3>Pan-Seared Scallops</h3>
@@ -389,7 +375,6 @@
                 </div>
                 <div class="price">$48</div>
             </div>
-            <!-- Item 3 -->
             <div class="menu-item reveal">
                 <div class="menu-text">
                     <h3>Saffron Lobster Risotto</h3>
@@ -397,7 +382,6 @@
                 </div>
                 <div class="price">$55</div>
             </div>
-            <!-- Item 4 -->
             <div class="menu-item reveal">
                 <div class="menu-text">
                     <h3>Dry-Aged Ribeye</h3>
@@ -408,7 +392,6 @@
         </div>
     </section>
 
-    <!-- EXPERIENCE -->
     <section id="experience" class="experience">
         <div class="exp-content reveal">
             <h2 style="font-size: 3rem; margin-bottom: 20px;">A Modern <br>Masterpiece</h2>
@@ -418,7 +401,6 @@
         <div class="exp-image"></div>
     </section>
 
-    <!-- RESERVATION -->
     <section id="reservation" style="padding-top: 100px;">
         <div class="reservation reveal">
             <h2 style="text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Book Your Table</h2>
@@ -437,7 +419,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="logo" style="margin-bottom: 40px;">LUMINA<span>BISTRO</span></div>
         <div class="social-links">
@@ -450,9 +431,7 @@
         </p>
     </footer>
 
-    <!-- JAVASCRIPT -->
     <script>
-        // 1. Sticky Navbar Effect
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -462,7 +441,6 @@
             }
         });
 
-        // 2. Reveal on Scroll Animation
         const reveals = document.querySelectorAll('.reveal');
 
         const revealOnScroll = () => {
@@ -479,10 +457,8 @@
 
         window.addEventListener('scroll', revealOnScroll);
         
-        // Initial check on load
         revealOnScroll();
 
-        // 3. Simple Form Handling
         document.querySelector('.res-form').addEventListener('submit', (e) => {
             e.preventDefault();
             alert('Thank you! Your reservation request has been sent. Our Maître D will contact you shortly.');
