@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA BISTRO | Elite Fine Dining</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --gold: #D4AF37;
+            --black: #0A0A0A;
+            --dark-grey: #1A1A1A;
+            --light-grey: #A0A0A0;
+            --white: #FFFFFF;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- REVEAL ANIMATION --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 90px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            z-index: 1000;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 10, 0.95);
+            height: 70px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .btn-nav {
+            background: var(--gold);
+            color: var(--black) !important;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 700 !important;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--light-grey);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--black);
+            padding: 20px 40px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            transition: var(--transition);
+            border: 2px solid var(--gold);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* --- INFO BAR --- */
+        .info-bar {
+            background: var(--dark-grey);
+            padding: 40px 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .info-item h4 {
+            color: var(--gold);
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        /* --- MENU SECTION --- */
+        .section-padding {
+            padding: 120px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title h2 {
+            font-size: 3.5rem;
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px 100px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .menu-item:hover {
+            border-bottom-color: var(--gold);
+        }
+
+        .menu-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .menu-text p {
+            color: var(--light-grey);
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .price {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* --- EXPERIENCE SECTION --- */
+        .experience {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: #000;
+        }
+
+        .exp-content {
+            padding: 15%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .exp-image {
+            background: url('https://images.unsplash.com/photo-1550966842-30cae758509c?auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 600px;
+        }
+
+        /* --- RESERVATION FORM --- */
+        .reservation {
+            background: var(--dark-grey);
+            max-width: 800px;
+            margin: -100px auto 100px;
+            padding: 60px;
+            border-radius: 20px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .res-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        input, select {
+            background: var(--black);
+            border: 1px solid #333;
+            padding: 15px;
+            color: white;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: var(--gold);
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 80px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .social-links {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .social-links a {
+            color: var(--light-grey);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 968px) {
+            .menu-grid, .experience, .info-bar, .res-form {
+                grid-template-columns: 1fr;
+            }
+            .nav-links { display: none; }
+            .exp-image { height: 400px; }
+            .reservation { margin: 40px 5%; width: 90%; }
+            .full-width { grid-column: span 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="logo">LUMINA<span>BISTRO</span></div>
+        <div class="nav-links">
+            <a href="#menu">Menu</a>
+            <a href="#experience">The Experience</a>
+            <a href="#reservation" class="btn-nav">Book Table</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="reveal" style="color: var(--gold); letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 20px;">Est. 1994 • New York</span>
+            <h1 class="reveal">The Art of <br>Fine Dining</h1>
+            <p class="reveal">A sensory journey through modern gastronomy, served in an atmosphere of timeless elegance.</p>
+            <div class="cta-group reveal">
+                <a href="#reservation" class="btn-primary">Reserve Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFO BAR -->
+    <div class="info-bar">
+        <div class="info-item">
+            <h4>Location</h4>
+            <p>123 Fifth Ave, Manhattan</p>
+        </div>
+        <div class="info-item">
+            <h4>Hours</h4>
+            <p>Daily: 5:00 PM — 11:00 PM</p>
+        </div>
+        <div class="info-item">
+            <h4>Contact</h4>
+            <p>+1 (212) 555-0198</p>
+        </div>
+    </div>
+
+    <!-- MENU -->
+    <section id="menu" class="section-padding">
+        <div class="section-title reveal">
+            <h2>Seasonal Flavors</h2>
+            <p style="color: var(--light-grey); margin-top: 10px;">Curated by Executive Chef Julian Vance</p>
+        </div>
+        
+        <div class="menu-grid">
+            <!-- Item 1 -->
+            <div class="menu-item reveal">
+                <div class="menu-text">
+                    <h3>Wagyu Beef Carpaccio</h3>
+                    <p>Capers, truffle oil, parmesan reggiano, arugula</p>
+                </div>
+                <div class="price">$32</div>
+            </div>
+            <!-- Item 2 -->
+            <div class="menu-item reveal">
+                <div class="menu-text">
+                    <h3>Pan-Seared Scallops</h3>
+                    <p>Cauliflower purée, pancetta, lemon zest</p>
+                </div>
+                <div class="price">$48</div>
+            </div>
+            <!-- Item 3 -->
+            <div class="menu-item reveal">
+                <div class="menu-text">
+                    <h3>Saffron Lobster Risotto</h3>
+                    <p>Carnaroli rice, poached lobster tail, gold leaf</p>
+                </div>
+                <div class="price">$55</div>
+            </div>
+            <!-- Item 4 -->
+            <div class="menu-item reveal">
+                <div class="menu-text">
+                    <h3>Dry-Aged Ribeye</h3>
+                    <p>28-day aged, roasted garlic, red wine reduction</p>
+                </div>
+                <div class="price">$72</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="experience">
+        <div class="exp-content reveal">
+            <h2 style="font-size: 3rem; margin-bottom: 20px;">A Modern <br>Masterpiece</h2>
+            <p style="color: var(--light-grey); margin-bottom: 30px;">Every detail at Lumina is meticulously crafted, from the hand-blown glassware to the ambient lighting designed by award-winning architects.</p>
+            <a href="#" style="color: var(--gold); text-decoration: none; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem;">View Gallery →</a>
+        </div>
+        <div class="exp-image"></div>
+    </section>
+
+    <!-- RESERVATION -->
+    <section id="reservation" style="padding-top: 100px;">
+        <div class="reservation reveal">
+            <h2 style="text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Book Your Table</h2>
+            <form class="res-form">
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="date" required>
+                <select required>
+                    <option value="">Guests</option>
+                    <option value="2">2 People</option>
+                    <option value="4">4 People</option>
+                    <option value="6">6+ People</option>
+                </select>
+                <button type="submit" class="btn-primary full-width" style="border: none; cursor: pointer;">Confirm Booking</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="logo" style="margin-bottom: 40px;">LUMINA<span>BISTRO</span></div>
+        <div class="social-links">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">TripAdvisor</a>
+        </div>
+        <p style="color: #444; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;">
+            © 2024 Lumina Bistro Group. Excellence in every bite.
+        </p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // 1. Sticky Navbar Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // 2. Reveal on Scroll Animation
+        const reveals = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        
+        // Initial check on load
+        revealOnScroll();
+
+        // 3. Simple Form Handling
+        document.querySelector('.res-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you! Your reservation request has been sent. Our Maître D will contact you shortly.');
+        });
+    </script>
+</body>
+</html>
